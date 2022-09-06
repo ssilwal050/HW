@@ -1,0 +1,246 @@
+---
+title: "HW 1"
+author: "Suwash Silwal"
+output:
+  pdf_document: default
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+xfun::session_info('rmarkdown')
+```
+
+## Problem 1: Let Y be a discrete random variable and has a binomial distribution with sample n = 20 and the sucessful probability $\theta$.
+
+## 1.1 Probability mass function plot of Y, for $\theta$ = 0.05.
+```{r}
+n<- 20       # sample
+p1<- 0.05    # theta
+x<- 0:n      # Possible values of Y
+bin1<- dbinom(x,n,p1)
+plot(bin1,type="h", lwd=2, 
+     main = "Binomial Distribution",
+     col = "blue",
+     ylab = "Pr(Y=x)",
+     xlab = "(Y=x)")
+```
+
+## 1.2 Probability mass function plot of Y, for $\theta$ = 0.10.
+
+```{r}
+p2<- 0.10  # theta
+bin2<- dbinom(x,n,p2)
+plot(bin2,type="h", lwd=2, 
+     main = "Binomial Distribution",
+     col = "red",
+     ylab = "Pr(Y=x)",
+     xlab = "Y")
+```
+
+## 1.3 P(Y $\le$ 2), for $\theta$ = 0.05
+
+```{r}
+pbinom(2,n,p1)
+```
+
+## 1.4 P(Y $\le$ 2), for $\theta$ = 0.10
+
+```{r}
+pbinom(2,n,p2)
+```
+
+## Problem 2: Let $\theta$ be a continuous random variable and has a beta distribution with the parameter $\alpha$ = 2 and $\beta$ = 20.
+
+## 2.1 Probability density function plot of $\theta$(x $\in$ (0,1))
+
+```{r}
+a<- 2      # alpha
+b<- 20     # beta
+x1<- seq(0,1,length = 100)   # random values between 0 and 1
+beta1<- dbeta(x1,a,b)        
+plot(x1,beta1, type="l", lwd=2, 
+     main = "Beta Distribtuion",
+     ylab = "Pr(Y=x)",
+     col = "blue",
+     xlab = "Y=x")
+```
+
+## 2.2 Cumulative function plot of $\theta$(x $\in$ (0,1))
+
+```{r}
+beta2<- pbeta(x1,a,b)  
+plot(x1,beta2, type="l", lwd=2, 
+     main = "CDF",
+     ylab = "Pr(Y=x)",
+     col = "red",
+     xlab = "Y") 
+```
+
+## 2.3 Pr(0.05 $\le$ $\theta$ $\le$ 0.25)
+
+```{r}
+pbeta(0.25,a,b)- pbeta(0.05,a,b)
+```
+
+## 2.4 Pr($\theta$ $\le$ 0.75)
+
+```{r}
+pbeta(0.075,a,b)
+```
+
+## Problem 3: Let $\theta$ be a continuous random variable and has a beta distribution with the parameter $\alpha$ = 2 and $\beta$ = 40.
+
+## 3.1 Probability density function plot of $\theta$(x $\in$ (0,1))
+
+```{r}
+a1<- 2     # alpha
+b1<- 40    # beta
+beta3<- dbeta(x1,a1,b1)     
+plot(x1,beta3, type="l", lwd=2, 
+     main = "Beta Distribtuion",
+     ylab = "Pr(Y=x)",
+     col = "blue",
+     xlab = "Y")
+```
+
+## 3.2 Cumulative function plot of $\theta$(x $\in$ (0,1))
+
+```{r}
+beta4<- pbeta(x1,a1,b1)  
+plot(x1,beta4, type="l", lwd=2, 
+     main = "CDF",
+     ylab = "Pr(Y=x)",
+     col = "red",
+     xlab = "Y") 
+```
+
+## 3.3 Pr(0.05 $\le$ $\theta$ $\le$ 0.25)
+
+```{r}
+pbeta(0.25,a1,b1)-pbeta(0.05,a1,b1)
+```
+
+## 2.4 Pr($\theta$ $\le$ 0.75)
+
+```{r}
+pbeta(0.075,a1,b1)
+```
+
+## Problem 4:
+
+Given,
+
+for $\theta = 1, Y \sim N(1,\sigma^2)$\
+for $\theta = 2, Y \sim N(2,\sigma^2)$
+
+And,
+
+Pr($\theta$ = 1) = 0.25\
+Pr($\theta$ = 2) = 0.75
+
+\underline{1. Parameter space for $\theta$ and Sample space for Y}
+
+\underline{Parameter space ($\Theta$):}
+
+for $\theta$ = 1, $\Theta$ = {1, $\sigma$>0}\
+for $\theta$ = 2, $\Theta$ = {2, $\sigma$>0}
+
+\underline{Sample space (Y):}
+
+for $\theta$ = 1, Y = y $\in$ (-$\infty$, $\infty$)\
+for $\theta$ = 2, Y = y $\in$ (-$\infty$, $\infty$)
+
+\underline{2. Prior distribution of $\theta$, p($\theta$)}
+
+$\theta$ is discrete and the distribution of theta is:
+
+p($\theta$) = 
+
+\underline{3. Conditional distribution of Y/$\theta$, p(y/$\theta$)}
+
+$Y/\theta \sim N(\mu_\theta, \sigma_\theta^2)$
+
+\underline{4. The marginal distribution of Y, p(y)}
+
+$p(y) = Pr(\theta=1) \times p(y/\theta = 1) + Pr(\theta=2) \times p(y/\theta = 2)$\
+      $= 0.25 \times N(y|1, \sigma^2) + 0.75 \times N(y|2, \sigma^2)$
+
+\underline{5. The marginal distribution of Y, p(y), when $\sigma$ = 2,}
+
+$p(y) = 0.25 \times N(y |1,4) + 0.75 \times N(y|2,4)$
+
+```{r}
+sd<-2        # standard deviation 
+theta1<- 1   # parameter 1
+theta2<- 2   # parameter 2
+
+y <- seq(-5,10,length = 1000) # random values between -5 to 10 
+
+# marginal distribution of Y
+mdf<- 0.25*dnorm(y,theta1,sd) + 0.75*dnorm(y,theta2,sd) 
+
+# marginal distribution plot
+plot(y,mdf,                  
+     type="l", lwd=2, 
+     main = "Marginal distribution of Y",
+     ylab = "Pr(Y=y)",
+     col = "blue",
+     xlab = "Y=y")
+```
+
+\underline{6. The posterior probability Pr($\theta$=1|Y=1), when $\sigma$ = 2}
+
+$Pr(\theta=1/y=1) = \frac{p(y=1|\theta =1)\times p(\theta=1)} {p(y=1)}$
+
+```{r}
+y1<- 1    # for r.v. Y = 1
+
+# Probability of Y = 1 given theta = 1 
+y1_theta<- 0.25*dnorm(y1,theta1,sd) 
+
+# Marginal distribution for Y = 1 
+mdf1<- 0.25*dnorm(y1,theta1,sd) + 0.75*dnorm(y1,theta2,sd) 
+
+# Posterior probability Pr(theta=1|Y=1)
+theta_y1<- y1_theta/mdf1  
+theta_y1
+
+```
+
+\underline{7. The posterior distribution of $\theta, p(\theta|Y=1)$ for different $\sigma$}
+
+```{r}
+y_1 <- seq(-20,20,length = 1000)        # random values between -5 to 10 
+sd_v<- c(0.5,2,4,6,15)                     # different values of s.d.
+typ <- c("black","blue","red","green","violet")
+
+# Marginal distribution
+mdf_1<- 0.25*dnorm(y_1,theta1,sd_v[1]) + 0.75*dnorm(y_1,theta2,sd_v[1]) 
+
+# Posterior probability Pr(theta|Y)
+theta1_y <- (dnorm(y_1,theta1,sd_v[1])*0.25)/mdf_1   
+
+# Posterior probability plot
+plot(y_1,theta1_y,
+     type="l", lwd=3, 
+     main = expression(paste("Poesterior distribution of ", theta)),
+     ylab = "Pr(Y=y)",
+     col = typ[1],
+     xlab = "Y=y")
+
+for (i in 2:5){
+  mdf_i<- 0.25*dnorm(y_1,theta1,sd_v[i]) + 0.75*dnorm(y_1,theta2,sd_v[i])
+  thetai_y <- (dnorm(y_1,theta1,sd_v[i])*0.25)/mdf_i
+  lines(y_1,thetai_y,col=typ[i])
+}
+legend("topright",col=typ,lty=1,
+        c("0.5", "2", "4", "6","15"),
+        title = expression(paste("s.d. " , (sigma))))
+```
+
+From the above plot, we can see that as $\sigma$ increases, the distribution tends to be uniform (because when $\sigma \rightarrow \infty$ the data contain no information)
+
+
+
+
