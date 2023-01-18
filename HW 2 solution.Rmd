@@ -1,0 +1,33 @@
+---
+title: "Unit 2 HW"
+output:
+  pdf_document: default
+  html_document: default
+date: "2023-01-13"
+---
+
+## Problem 1: Solution
+
+thicness(in microns) - { 6.4, 8.0, 7.8 ,8.0, 7.9, 7.1, 7.6, 8.4, 7.7, 8.2, 7.1, 7.4, 7.2, 8.1, 8.2, 8.3, 8.2, 8.1, 8.0, 8.3 } 
+
+\textbf{1a.} 
+```{r echo=FALSE}
+data <- c(6.4, 8.0, 7.8 ,8.0, 7.9, 7.1, 7.6, 8.4, 7.7, 8.2, 7.1, 7.4, 7.2, 8.1, 8.2, 8.3, 8.2, 8.1, 8.0, 8.3)
+stem(data)
+sort(data)
+```
+The data is left skewed. 
+
+\textbf{1b.} 
+\math{#} of sample (n) = 20
+
+$$sample \ mean (\overline{X}) = \frac{\sum_{i=1}^{20} X_i }{n} = \frac{6.4 + 8.0 + .... + 8.0 + 8.3}{20} = \frac{156}{20} = 7.6 $$
+
+For median, sort your data set in ascending order.
+
+Locator number for sample median = {\frac{n+1}2}}^{th} value = {\frac{21}{2}}^{th} = 10.5^{th} value 
+
+so, median = \frac{10^th value + 11^{th} value}{2} = \frac{8+8}{2} = 8
+
+
+
